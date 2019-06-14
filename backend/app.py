@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 
 def basic_sql(user_id, table_name):
-    return f'(SELECT {table_name}.* FROM {table_name} JOIN "${table_name}" WHERE User = {user_id})'
+    return f'(SELECT {table_name}.* FROM {table_name} NATURAL JOIN Entitlement{table_name} WHERE User = {user_id})'
 
 QUERIES = {
     'all_events': 'SELECT * FROM {{ Events }}',
