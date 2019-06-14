@@ -1,0 +1,58 @@
+BEGIN TRANSACTION;
+DROP TABLE IF EXISTS "$Timeseries";
+CREATE TABLE IF NOT EXISTS "$Timeseries" (
+	"User"	INTEGER,
+	"Asset"	TEXT
+);
+DROP TABLE IF EXISTS "$Events";
+CREATE TABLE IF NOT EXISTS "$Events" (
+	"User"	INTEGER,
+	"Id"	INTEGER
+);
+DROP TABLE IF EXISTS "$DataLake";
+CREATE TABLE IF NOT EXISTS "$DataLake" (
+	"User"	INTEGER,
+	"Key"	TEXT
+);
+DROP TABLE IF EXISTS "DataLake";
+CREATE TABLE IF NOT EXISTS "DataLake" (
+	"Key"	TEXT,
+	"ham"	NUMERIC,
+	"spam"	NUMERIC
+);
+DROP TABLE IF EXISTS "Timeseries";
+CREATE TABLE IF NOT EXISTS "Timeseries" (
+	"Asset"	TEXT,
+	"time"	INTEGER,
+	"foo"	NUMERIC,
+	"bar"	NUMERIC
+);
+DROP TABLE IF EXISTS "Events";
+CREATE TABLE IF NOT EXISTS "Events" (
+	"Id"	INTEGER PRIMARY KEY AUTOINCREMENT,
+	"start"	INTEGER,
+	"end"	INTEGER,
+	"message"	TEXT
+);
+INSERT INTO "$Timeseries" VALUES (1,'Berlin');
+INSERT INTO "$Timeseries" VALUES (2,'Hamburg');
+INSERT INTO "$Timeseries" VALUES (2,'Berlin');
+INSERT INTO "$Events" VALUES (0,1);
+INSERT INTO "$Events" VALUES (0,2);
+INSERT INTO "$Events" VALUES (1,3);
+INSERT INTO "$Events" VALUES (1,2);
+INSERT INTO "$Events" VALUES (2,1);
+INSERT INTO "$DataLake" VALUES (1,'b.txt');
+INSERT INTO "$DataLake" VALUES (2,'a.txt');
+INSERT INTO "$DataLake" VALUES (2,'b.txt');
+INSERT INTO "DataLake" VALUES ('a.txt',1,2);
+INSERT INTO "DataLake" VALUES ('a.txt',2,3);
+INSERT INTO "DataLake" VALUES ('b.txt',34,23);
+INSERT INTO "DataLake" VALUES ('b.txt',21,3);
+INSERT INTO "Timeseries" VALUES ('Berlin',1,0.4,0.23);
+INSERT INTO "Timeseries" VALUES ('Hamburg',0,0.45,0.78);
+INSERT INTO "Timeseries" VALUES ('Hamburg',1,0.78,0.5);
+INSERT INTO "Events" VALUES (1,0,5,'something failed');
+INSERT INTO "Events" VALUES (2,2,3,'out of fuel');
+INSERT INTO "Events" VALUES (3,4,12,'timeout');
+COMMIT;
