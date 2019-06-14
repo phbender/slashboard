@@ -22,8 +22,8 @@ Therefore, a token, sent by the browser (here: simple header `X-Username`), has 
 
 ```
 $ cd backend
-$ cd _data; ./init.sh;
-
+$ cd _data; ./init.sh; cd ..
+$ FLASK_APP=app FLASK_DEBUG=1 flask run
 ```
 
 ## SQL refresher
